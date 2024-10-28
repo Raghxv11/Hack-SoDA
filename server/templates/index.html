@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Auto Grader</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="blob"></div>
+  <div id="blur"></div>
+  <h1 data-value="MOUSEMOVE">Automate Grading with  <span>Gemini</span></h1>
+  <!-- <div class="form">
+    <p>
+      <label>Question: </label>
+      <input type="text" id="question" name="question" />
+      <input type="file" id="file" name="file" accept="image/*,.pdf" />
+    </p>
+    <p>
+      <label>Upload Student Solution: </label>
+      <input type="file" id="file" name="file" accept="image/*,.pdf" />
+      <input type="text" id="question" name="question" />
+    </p>
+    <div id="responseArea" class="response">
+      <label for="response">Response:</label>
+      <div id="responseOutput">[The response will be displayed here]</div>
+    </div>
+    <button>Grade</button>
+  </div> -->
+<div class="form">
+  <!-- Question -->
+  <h4>Question:</h4>
+  <div class="messageBox" style="z-index: 3;">
+    <div class="fileUploadWrapper">
+      <label for="file">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
+          <circle
+            stroke-width="20"
+            stroke="#6c6c6c"
+            fill="none"
+            r="158.5"
+            cy="168.5"
+            cx="168.5"
+          ></circle>
+          <path
+            stroke-linecap="round"
+            stroke-width="25"
+            stroke="#6c6c6c"
+            d="M167.759 79V259"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-width="25"
+            stroke="#6c6c6c"
+            d="M79 167.138H259"
+          ></path>
+        </svg>
+        <span class="tooltip">Add an image</span>
+      </label>
+      <input type="file" id="file" name="file" multiple />
+    </div>
+    <input required="" placeholder="Upload image or type question..." type="text" id="messageInput" />
+  </div>
+  <div class="form">
+  <h4>Student Solution:</h4>
+  <div class="messageBox" style="z-index: 3;">
+    <div class="fileUploadWrapper">
+      <label for="file">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 337 337">
+          <circle
+            stroke-width="20"
+            stroke="#6c6c6c"
+            fill="none"
+            r="158.5"
+            cy="168.5"
+            cx="168.5"
+          ></circle>
+          <path
+            stroke-linecap="round"
+            stroke-width="25"
+            stroke="#6c6c6c"
+            d="M167.759 79V259"
+          ></path>
+          <path
+            stroke-linecap="round"
+            stroke-width="25"
+            stroke="#6c6c6c"
+            d="M79 167.138H259"
+          ></path>
+        </svg>
+        <span class="tooltip">Add an image</span>
+      </label>
+      <input type="file" id="file" name="file" />
+    </div>
+    <input required="" placeholder="Upload image or type solution..." type="text" id="messageInput" />
+
+    <!-- <div id="sendButton">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 664 663">
+        <path
+          fill="none"
+          d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+        ></path>
+        <path
+          stroke-linejoin="round"
+          stroke-linecap="round"
+          stroke-width="33.67"
+          stroke="#6c6c6c"
+          d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+        ></path>
+      </svg>
+    </div> -->
+  </div>
+  
+  <Button>Grade</Button>
+
+</div>
+<!-- Add this section within the <body> tag -->
+  <div class="sidebar">
+    <select id="fileType" onchange="selectOption()">
+      <option value="pdf">PDF</option>
+      <option value="text">Text</option>
+      <option value="image">Image</option>
+    </select>  
+  </div>
+  
+</body>
+<script>
+  /* -- Glow effect -- */
+
+  const blob = document.getElementById("blob");
+
+  window.onpointermove = event => {
+    const { clientX, clientY } = event;
+
+    blob.animate({
+      left: `${clientX}px`,
+      top: `${clientY}px`
+    }, { duration: 3000, fill: "forwards" });
+  }
+</script>
+
+</html>
